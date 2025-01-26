@@ -43,13 +43,10 @@ const Dashboard = () => {
   const dispatch = useDispatch();
   const dataservices = useSelector((state: RootState) => state.services.services);
   const dataBanner = useSelector((state: RootState)=> state.banner.banners)
-  // const [dataservices, setDataServices] = useState<Service[]>([]);
-  // const [dataBanner, setDataBanner] = useState<Banner[]>([]);
 
   const getServicesData = async () => {
     try {
       const res = await getService();
-      // console.log("service data-->", res);
       // setDataServices(res);
       dispatch(setServices(res));
     } catch (error) {
@@ -60,7 +57,6 @@ const Dashboard = () => {
   const getBannerData = async () => {
     try {
       const res = await getBanner();
-      // console.log("data banner", res);
       // setDataBanner(res);
       dispatch(setBanners(res));
     } catch (error) {

@@ -1,63 +1,31 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
-import { getBalance } from "@/utils/balanceUtils";
-import { getProfile } from "@/utils/profileUtils";
+import { fetchBalance } from "@/app/store/slices/balanceSlice";
+import { fetchProfile } from "@/app/store/slices/profileSlice";
+import { AppDispatch, RootState } from "@/app/store/store";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { IoEyeOutline, IoEyeOffOutline } from "react-icons/io5";
-
-interface UserDataProfile {
-    status: number;
-    message: string;
-    data: UserData;
-  }
-
-interface UserData {
-  email: string;
-  first_name: string;
-  last_name: string;
-  profile_image: string;
-}
-
-interface BalanceData {
-  balance: number;
-}
+import { useDispatch, useSelector } from "react-redux";
+import DotDotDot from "./DotDotDot";
 
 const UserInfo = () => {
-  const [data, setData] = useState<UserData | null>(null);
-  const [dataBalance, setDataBalance] = useState<BalanceData | null>();
+  const dispatch = useDispatch<AppDispatch>();
+  const profile = useSelector((state: RootState) => state.profile.data);
+  const balance = useSelector((state: RootState) => state.balance.balance);
+  const profileLoading = useSelector((state: RootState) => state.profile.loading);
+  const balanceLoading = useSelector((state: RootState) => state.balance.loading);
   const [showBalance, setShowBalance] = useState<boolean>(true);
 
-  const getProfileData = async () => {
-    try {
-      const res = await getProfile();
-      // console.log("profile data", res);
-      setData(res);
-    } catch (error) {
-      console.error("error ambil data!", error);
-    } finally {
-    }
-  };
-
-  const getBalanceData = async () => {
-    try {
-      const res = await getBalance();
-      // console.log("data balance-->", res);
-      setDataBalance(res);
-    } catch (error) {
-      console.error("error ambil data!", error);
-    } finally {
-    }
-  };
-
   useEffect(() => {
-    getProfileData();
-    getBalanceData();
-  }, []);
+    dispatch(fetchProfile());
+    dispatch(fetchBalance());
+  }, [dispatch]);
 
-   const formatBalance = (balance: number) => {
-    if (isNaN(balance)) return "Rp. -";
+  const formatBalance = (balance: number | null | undefined) => {
+    if (!balance || isNaN(balance)) return "Rp. -";
     return balance
       .toLocaleString("id-ID", { style: "currency", currency: "IDR" })
       .replace("IDR", "Rp.")
@@ -69,12 +37,14 @@ const UserInfo = () => {
       <div className="flex justify-between">
         <div>
           <div className="border h-10 w-10 rounded-full">
-            
             <Image
-              src={data?.profile_image && data?.profile_image !== "https://minio.nutech-integrasi.com/take-home-test/null" 
-                ? data?.profile_image 
-                : "/image/profile.png"}
-
+              src={
+                profile?.profile_image &&
+                profile?.profile_image !==
+                  "https://minio.nutech-integrasi.com/take-home-test/null"
+                  ? profile?.profile_image
+                  : "/image/profile.png"
+              }
               width={40}
               height={40}
               className="object-cover"
@@ -83,15 +53,16 @@ const UserInfo = () => {
           </div>
           <h4 className="text-slate-500 mt-2 font-semibold">Selamat datang,</h4>
           <h3 className="text-slate-700 font-bold text-2xl mb-2">
-            {data?.first_name || "-"} {data?.last_name}
+            {profile?.first_name || "-"} {profile?.last_name}
           </h3>
         </div>
-        <div className="bg-red-500 rounded-xl w-[50%] text-white/90 gap-2 flex flex-col justify-center px-6">
+
+        <div className="bg-gradient-to-r from-red-500 to-red-400 rounded-xl w-[50%] text-white/90 gap-2 flex flex-col justify-center px-6">
           <div className="text-white/80 text-xs font-semibold">Saldo anda</div>
           <div className="font-semibold text-xl">
-            {showBalance && dataBalance?.balance !== undefined
-              ? formatBalance(dataBalance.balance)
-              : "Rp ******"}
+            {showBalance && balance !== undefined
+              ? formatBalance(balance)
+              : <div className="flex items-center">Rp<DotDotDot/></div>}
           </div>
           <div
             className="text-white/70 text-xs flex items-center cursor-pointer"
