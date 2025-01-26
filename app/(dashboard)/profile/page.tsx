@@ -5,7 +5,6 @@
 
 import Button from "@/components/Button";
 import FormInput from "@/components/FormInput";
-import { ToastClose, ToastLoading, ToastSuccess } from "@/components/Toast";
 import {
   getProfile,
   updateImageProfile,
@@ -53,7 +52,7 @@ const ProfilePage = () => {
   const getProfileData = async () => {
     try {
       const res = await getProfile();
-      console.log("profile data", res);
+      // console.log("profile data", res);
       setData(res);
       if (res) {
         setFormData({
@@ -64,7 +63,7 @@ const ProfilePage = () => {
         });
       }
     } catch (error) {
-      console.error("error ambil data nih!", error);
+      console.error("error!", error);
     } finally {
     }
   };
@@ -90,10 +89,10 @@ const ProfilePage = () => {
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    console.log("form data", formData);
+    // console.log("form data", formData);
     try {
       const res = await updateProfile(formData);
-      console.log("response update profile", res);
+      // console.log("response update profile", res);
 
       if (res.message === "Sukses") {
         setTimeout(() => {
@@ -105,7 +104,7 @@ const ProfilePage = () => {
         toast.error(`Ops, ${res.message}`);
       }
     } catch (error) {
-      console.error("Error update my profile:", error);
+      console.error("Error update:", error);
       setIsSubmitting(false);
     } finally {
     }
@@ -116,7 +115,7 @@ const ProfilePage = () => {
     setIsSubmittingFoto(true);
 
     if (!formData.profile_image) {
-      console.error("No image to upload");
+      console.error("Tidak ada image untuk diuplod");
       return;
     }
     try {
@@ -145,7 +144,7 @@ const ProfilePage = () => {
       );
 
       const result = await response.json();
-      console.log("hasil result upload", result);
+      // console.log("hasil result upload", result);
       if ((result.message = "Update Profile Image berhasil")) {
         setTimeout(() => {
           setIsSubmittingFoto(false);
@@ -153,7 +152,7 @@ const ProfilePage = () => {
         }, 1000);
         await getProfileData();
       } else {
-        toast.error(`Ops, ${result.message} `)
+        toast.error(`Ops, ${result.message}!`);
       }
     } catch (error) {
       console.error("Error update:", error);
@@ -179,7 +178,6 @@ const ProfilePage = () => {
               />
             ) : (
               <img
-                // src={formData.profile_image}
                 src={
                   formData?.profile_image &&
                   formData?.profile_image !==
@@ -199,13 +197,11 @@ const ProfilePage = () => {
             type="file"
             accept="image/*"
             onChange={handleFileChange}
-            // className="mt-1 block w-full text-xs"
             className="hidden"
           />
           <label
             htmlFor="fileUpload"
             className="cursor-pointer bg-white border border-slate-400 text-red-500 rounded-full hover:bg-red-100 transition-all text-xl p-2 absolute ml-24 mt-20"
-            // "rounded-full bg-white border-2 h-7 w-7 flex items-center justify-center absolute right-0 -bottom-1"
           >
             <HiPencil />
           </label>

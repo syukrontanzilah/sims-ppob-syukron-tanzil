@@ -1,5 +1,4 @@
 import Link from "next/link";
-// next hooks
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 

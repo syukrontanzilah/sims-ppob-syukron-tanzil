@@ -33,7 +33,7 @@ const ServicesTransaction = () => {
         setIsButtonDisabled(false);
       }
     } catch (error) {
-      console.error("Failed to fetch service details:", error);
+      console.error("Error!:", error);
     }
   };
 
@@ -47,11 +47,11 @@ const ServicesTransaction = () => {
 
     if (numericValue >= 0) {
       setInputValue(value);
-      setIsButtonDisabled(value.length <= 4);
+      // setIsButtonDisabled(value.length <= 4);
     }
   };
 
-  const handleTopUp = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!inputValue) return;
@@ -97,11 +97,11 @@ const ServicesTransaction = () => {
       if ((res.message = "Transaksi berhasil")) {
         setTimeout(() => {
           setLoading(false);
-          toast.success('Transaksi berhasil!')
-          router.push('/transaction')
+          toast.success("Transaksi berhasil!");
+          router.push("/transaction");
         }, 2000);
       } else {
-        toast.error('Terjadi kesalahan saat transaksi')
+        toast.error("Terjadi kesalahan saat transaksi");
       }
     } catch (error) {
       console.error("Error:", error);
@@ -140,10 +140,8 @@ const ServicesTransaction = () => {
           className="font-bold text-slate-600 focus:ring-gray-200 focus:border-gray-200"
         />
         <button
-          className={`rounded-md w-full text-white text-sm font-bold py-2 ${
-            inputValue.length > 4 ? "bg-red-500" : "bg-gray-400"
-          }`}
-          onClick={handleTopUp}
+          className={`rounded-md w-full text-white text-sm font-bold py-2 bg-red-500`}
+          onClick={handleSubmit}
           disabled={isButtonDisabled || loading}
         >
           {loading ? (

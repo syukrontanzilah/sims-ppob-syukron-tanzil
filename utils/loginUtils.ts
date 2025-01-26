@@ -12,6 +12,7 @@ export interface IUserCookies {
   };
 }
 
+// LOGIN
 export async function login(email: string, password: string) {
   const url = "https://take-home-test-api.nutech-integrasi.com/login";
   try {
@@ -52,6 +53,7 @@ export async function login(email: string, password: string) {
   }
 }
 
+// LOGOUT
 export async function logout() {
   (await cookies()).delete("user");
 }

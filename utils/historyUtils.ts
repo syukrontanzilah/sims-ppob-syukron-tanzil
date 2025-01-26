@@ -5,8 +5,8 @@ import { fetcherPpob } from "./fetchPpob";
 
 // GET
 
-export const getHistory = async () => {
-  const url = `/transaction/history`
+export const getHistory = async (offset: number, limit: number) => {
+  const url = `/transaction/history?offset=${offset}&limit=${limit}`
   const userRaw = (await cookies()).get("user")?.value;
   const user: IUserCookies = JSON.parse(userRaw!);
 
@@ -17,7 +17,7 @@ export const getHistory = async () => {
       token: user.data.token
     })
     console.log('response history->',response)
-    return response.data
+    return response
   } catch(error){
     console.error("Error nih!")
     throw error

@@ -32,8 +32,8 @@ interface FetcherParams {
         headers,
         body: body
         ? isBodyForm
-          ? (body as FormData) // For FormData, send it directly
-          : JSON.stringify(body) // For JSON, stringify the body
+          ? (body as FormData) 
+          : JSON.stringify(body) 
         : undefined,
         cache: "no-cache",
       });
@@ -47,7 +47,7 @@ interface FetcherParams {
   
       return {
         error: true,
-        // stat_msg: error.stat_msg ?? "An unknown error occurred",
+        // stat_msg: error.stat_msg ?? "Error!",
       };
     }
   };

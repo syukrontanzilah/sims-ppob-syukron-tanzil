@@ -2,17 +2,13 @@
 "use client";
 import { usePathname } from "next/navigation";
 import React, { useState, useEffect } from "react";
-// import Logo from './Logo';
 import Nav from "./Nav";
 import Link from "next/link";
 import Image from "next/image";
-// import NavMobile from './NavMobile';
-// import ThemeToggler from './ThemeToggler';
 
 const Header = () => {
   const [header, setHeader] = useState(false);
   const pathname = usePathname();
-  // console.log('path name ==>', pathname);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -20,8 +16,6 @@ const Header = () => {
     };
 
     window.addEventListener("scroll", handleScroll);
-
-    // Cleanup event listener on component unmount
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
@@ -41,7 +35,7 @@ const Header = () => {
           <div>
           <Image width={20} height={20} src={"/icon/Logo.png"} alt="logo" />
           </div>
-            <div className="font-bold text-md text-slate-700 ">SIMS PPOB (S.TANZIL)</div>
+            <div className="font-bold text-md text-slate-700 ">SIMS PPOB (TANZIL)</div>
           </Link>
           <div className="flex items-center">
             <Nav

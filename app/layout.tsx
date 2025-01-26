@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "SIMS PPOB (S.TANZIL)",
-  description: "Test App With Next JS",
+  title: "SIMS PPOB (TANZIL)",
+  description: "PPOB Next JS",
 };
 
 export default function RootLayout({

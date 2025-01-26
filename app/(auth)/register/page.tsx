@@ -32,10 +32,10 @@ const Register = () => {
     e.preventDefault();
     setLoading(true);
     setErrorMessage("")
-    console.log('data send', formData)
+    // console.log('data send', formData)
     try {
       const response = await register(formData);
-      console.log("response register", response);
+      // console.log("response register", response);
       if (response.message = "Registrasi berhasil silahkan login") {
         setTimeout(() => {
           setLoading(false);
@@ -111,7 +111,7 @@ const Register = () => {
             </form>
           </div>
           {
-            errorMessage && <div className="text-red-500 text-sm text-center mt-2">Opss Ada yang salah Salah!</div>
+            errorMessage && <div className="text-red-500 text-sm text-center mt-2">Opss Ada yang salah!</div>
           }
           <div className="text-center text-xs mt-6">
             Sudah punya akun? Login{" "}

@@ -44,7 +44,7 @@ const Dashboard = () => {
   const getServicesData = async () => {
     try {
       const res = await getService();
-      console.log("service data-->", res);
+      // console.log("service data-->", res);
       setDataServices(res);
     } catch (error) {
       console.error("error", error);
@@ -54,7 +54,7 @@ const Dashboard = () => {
   const getBannerData = async () => {
     try {
       const res = await getBanner();
-      console.log("data banner", res);
+      // console.log("data banner", res);
       setDataBanner(res);
     } catch (error) {
       console.error("error", error);

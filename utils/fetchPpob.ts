@@ -31,13 +31,15 @@ interface FetcherParams {
       const result = await response.json();
       if (!response.ok)
         return { error: true, stat_msg: result.stat_msg ?? result.message };
+
       return result;
+      
     } catch (error: any) {
       console.error("❗ Unexpected fetch error:", error);
   
       return {
         error: true,
-        // stat_msg: error.stat_msg ?? "An unknown error occurred",
+        // stat_msg: error.stat_msg ?? "Error!",
       };
     }
   };

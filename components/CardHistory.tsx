@@ -15,6 +15,13 @@ const CardHistory: React.FC<CardHistoryProps> = ({
   transaksi,
   type_transaksi,
 }) => {
+  const formatBalance = (balance: number) => {
+    if (isNaN(balance)) return "Rp. -";
+    return balance
+      .toLocaleString("id-ID", { style: "currency", currency: "IDR" })
+      .replace("IDR", "Rp.")
+      .replace(/(\,00)/, "");
+  };
   return (
     <div className="shadow-sm flex justify-between rounded-md p-4 items-center border-gray-200 border mb-4">
       <div>
@@ -29,7 +36,7 @@ const CardHistory: React.FC<CardHistoryProps> = ({
               type_transaksi === "TOPUP" ? "text-green-500" : "text-red-500"
             }`}
           >
-            Rp.{nominal}
+          {formatBalance(nominal)}
           </div>
         </div>
         <div className="text-xs text-slate-400">{date}</div>

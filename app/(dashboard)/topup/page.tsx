@@ -52,7 +52,7 @@ const Topup = () => {
 
   const handleTopUp = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("topupdata data", topUpData);
+    // console.log("topupdata data", topUpData);
     setLoading(true);
 
     if (topUpData.top_up_amount <= 0 || isNaN(topUpData.top_up_amount)) {
@@ -61,11 +61,11 @@ const Topup = () => {
       return;
     }
 
-    console.log("form data", topUpData);
+    // console.log("form data", topUpData);
 
     try {
       const res = await postTopUp(topUpData);
-      console.log("response topup", res);
+      // console.log("response topup", res);
 
       if ((res.message = "Top Up Balance berhasil")) {
         setTimeout(() => {
@@ -77,7 +77,7 @@ const Topup = () => {
         toast.error('Terjadi kesalahan saat topup')
       }
     } catch (error) {
-      console.error("Error adding menu PPOB:", error);
+      console.error("Error!:", error);
       setLoading(false);
     } finally {
     }

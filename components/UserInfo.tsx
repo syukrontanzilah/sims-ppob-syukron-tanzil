@@ -32,10 +32,10 @@ const UserInfo = () => {
   const getProfileData = async () => {
     try {
       const res = await getProfile();
-      console.log("profile data", res);
+      // console.log("profile data", res);
       setData(res);
     } catch (error) {
-      console.error("error ambil data nih!", error);
+      console.error("error ambil data!", error);
     } finally {
     }
   };
@@ -43,10 +43,10 @@ const UserInfo = () => {
   const getBalanceData = async () => {
     try {
       const res = await getBalance();
-      console.log("data balance-->", res);
+      // console.log("data balance-->", res);
       setDataBalance(res);
     } catch (error) {
-      console.error("error ambil data nih!", error);
+      console.error("error ambil data!", error);
     } finally {
     }
   };
@@ -56,7 +56,7 @@ const UserInfo = () => {
     getBalanceData();
   }, []);
 
-  const formatBalance = (balance: number) => {
+   const formatBalance = (balance: number) => {
     if (isNaN(balance)) return "Rp. -";
     return balance
       .toLocaleString("id-ID", { style: "currency", currency: "IDR" })

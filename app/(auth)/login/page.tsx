@@ -28,21 +28,20 @@ const Login = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true)
-    setErrorMessage("")
+    setLoading(true);
+    setErrorMessage("");
     try {
-      const response = await login(email, password)
-      console.log("Response:", response);
-      if(response){
+      const response = await login(email, password);
+      // console.log("Response:", response);
+      if (response) {
         setTimeout(() => {
           setLoading(false);
-          toast.success('Login berhasil!')
-          router.replace('/dashboard')
+          toast.success("Login berhasil!");
+          router.replace("/dashboard");
         }, 2000);
-      }
-      else {
-        setErrorMessage("Opps email atau password salah!")
-        setLoading(false)
+      } else {
+        setErrorMessage("Opps email atau password salah!");
+        setLoading(false);
       }
     } catch (error: any) {
       console.error("Error:", error);
@@ -52,8 +51,8 @@ const Login = () => {
   useEffect(() => {
     const user = Cookies.get("user");
     if (user) {
-      redirect('/dashboard')
-    } 
+      redirect("/dashboard");
+    }
   }, []);
 
   return (
@@ -86,12 +85,18 @@ const Login = () => {
                 isInputPassword
                 required
               />
-              <Button type="submit" title={loading? "Loading..":"Masuk"} className="mt-4" />
+              <Button
+                type="submit"
+                title={loading ? "Loading.." : "Masuk"}
+                className="mt-4"
+              />
             </form>
           </div>
-          {
-            errorMessage && <div className="text-red-500 text-sm text-center mt-2">Opss Email atau Password Salah!</div>
-          }
+          {errorMessage && (
+            <div className="text-red-500 text-sm text-center mt-2">
+              Opss Email atau Password Salah!
+            </div>
+          )}
           <div className="text-center text-xs mt-6">
             Belum punya akun? Registrasi{" "}
             <span className="text-red-600 font-bold">
