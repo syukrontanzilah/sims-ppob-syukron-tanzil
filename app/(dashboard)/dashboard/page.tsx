@@ -1,17 +1,19 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
+import { setBanners } from "@/app/store/slices/bannerSlice";
+import { setServices } from "@/app/store/slices/servicesSlice";
+import { RootState } from "@/app/store/store";
 import CardBanner from "@/components/CardBanner";
 import CardLayanan from "@/components/CardLayanan";
 import UserInfo from "@/components/UserInfo";
-import { getBalance } from "@/utils/balanceUtils";
 import { getBanner } from "@/utils/bannerUtils";
-import { getProfile } from "@/utils/profileUtils";
 import { getService } from "@/utils/serviceUtils";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
-import { IoEyeOutline } from "react-icons/io5";
+import { useSelector, useDispatch} from "react-redux"
+
 
 export interface Service {
   service_code: string;
@@ -37,15 +39,19 @@ export interface BannerResponse {
 }
 
 const Dashboard = () => {
-  const router = useRouter()
-  const [dataservices, setDataServices] = useState<Service[]>([]);
-  const [dataBanner, setDataBanner] = useState<Banner[]>([]);
+  const router = useRouter();
+  const dispatch = useDispatch();
+  const dataservices = useSelector((state: RootState) => state.services.services);
+  const dataBanner = useSelector((state: RootState)=> state.banner.banners)
+  // const [dataservices, setDataServices] = useState<Service[]>([]);
+  // const [dataBanner, setDataBanner] = useState<Banner[]>([]);
 
   const getServicesData = async () => {
     try {
       const res = await getService();
       // console.log("service data-->", res);
-      setDataServices(res);
+      // setDataServices(res);
+      dispatch(setServices(res));
     } catch (error) {
       console.error("error", error);
     }
@@ -55,7 +61,8 @@ const Dashboard = () => {
     try {
       const res = await getBanner();
       // console.log("data banner", res);
-      setDataBanner(res);
+      // setDataBanner(res);
+      dispatch(setBanners(res));
     } catch (error) {
       console.error("error", error);
     }

@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 import Image from "next/image";
 import React from "react";
 
@@ -7,7 +8,7 @@ interface CardLayananProps {
   onClick?: () => void;
 }
 
-const CardLayanan: React.FC<CardLayananProps> = ({ title, image, onClick }) => {
+const CardLayanan: React.FC<CardLayananProps> = React.memo(({ title, image, onClick }) => {
   return (
     <div onClick={onClick} className="w-[60px] cursor-pointer">
       <div>
@@ -24,6 +25,6 @@ const CardLayanan: React.FC<CardLayananProps> = ({ title, image, onClick }) => {
       </div>
     </div>
   );
-};
+});
 
 export default CardLayanan;

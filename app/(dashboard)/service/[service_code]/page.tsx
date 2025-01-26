@@ -105,7 +105,7 @@ const ServicesTransaction = () => {
       }
     } catch (error) {
       console.error("Error:", error);
-      setResponseMessage("Terjadi kesalahan saat memproses transaksi.");
+      setResponseMessage("Terjadi kesalahan atau Saldo anda tidak mencukupi.");
       setLoading(false);
     } finally {
     }
