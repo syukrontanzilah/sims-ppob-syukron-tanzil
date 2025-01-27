@@ -96,7 +96,7 @@ const Topup = () => {
           <h2 className="text-xl font-bold text-slate-700">Nominal Top Up</h2>
         </div>
 
-        <form action="" className="flex gap-6 items-center">
+        <form action="" className="lg:flex gap-6 items-center">
           <div className="w-full">
             <FormInput
               placeholder="Nominal Min. Rp.10.000 Max. Rp.1000.000"
@@ -109,7 +109,7 @@ const Topup = () => {
             />
 
             <button
-              className={`rounded-md w-full text-white text-sm font-bold py-2 ${
+              className={`rounded-md w-full mb-5 lg:mb-0 text-white text-sm font-bold py-2 ${
                 isButtonDisabled ? "bg-gray-400" :
                 loading? "bg-red-300" :
                 "bg-red-500"

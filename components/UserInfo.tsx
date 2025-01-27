@@ -47,7 +47,7 @@ const UserInfo = () => {
               }
               width={40}
               height={40}
-              className="object-cover"
+              className="object-cover h-10 w-10 rounded-full"
               alt="user"
             />
           </div>

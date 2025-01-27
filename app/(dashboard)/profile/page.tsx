@@ -211,7 +211,7 @@ const ProfilePage = () => {
           {data?.first_name || ""} {data?.last_name}
         </div>
 
-        <div className=" w-[40%]">
+        <div className=" w-[100%] lg:w-[40%]">
           <FormInput
             placeholder="Email"
             label="Email"
@@ -238,7 +238,7 @@ const ProfilePage = () => {
             name="last_name"
           />
         </div>
-        <div className="flex w-[40%] gap-4 mb-2">
+        <div className="flex w-full lg:w-[40%] gap-4 mb-2">
           <button
             onClick={handleFormSubmit}
             type="submit"
@@ -268,7 +268,7 @@ const ProfilePage = () => {
           await logout();
           router.replace("/login");       
         }}
-        className=" border rounded-md text-sm font-bold text-white bg-red-500 p-2 mb-2 w-[40%] flex items-center justify-center">
+        className=" border rounded-md text-sm font-bold text-white bg-red-500 p-2 mb-2 w-full lg:w-[40%] flex items-center justify-center">
             {isLoadingLogout? "Loading..." : "Logout"}
         </button>
       </form>

@@ -56,7 +56,7 @@ const Login = () => {
 
   return (
     <div className="login flex min-h-screen">
-      <div className="left-login w-1/2 flex flex-col justify-center items-center p-6">
+      <div className="left-login w-full md:w-1/2 flex flex-col justify-center items-center p-6">
         <div className="xl:w-[60%] md:w-[100%]">
           <div className="flex items-center justify-center gap-2 mb-6">
             <Image width={20} height={20} src={"/icon/Logo.png"} alt="logo" />
@@ -105,7 +105,7 @@ const Login = () => {
         </div>
       </div>
 
-      <div className="right-login w-1/2">
+      <div className="right-login md:w-1/2 hidden md:flex">
         <Image
           width={100}
           height={100}
