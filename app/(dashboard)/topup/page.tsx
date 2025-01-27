@@ -114,7 +114,8 @@ const Topup = () => {
               disabled={isButtonDisabled}
             >
               {loading ? (
-                <span className="inline-block w-4 h-4 border-2 border-t-transparent border-white rounded-full animate-spin"></span>
+                <span className="inline-block w-[14px] h-[14px] border-2 border-t-transparent border-white rounded-full animate-spin"></span>
+                // "Processing..."
               ) : (
                 "Top Up"
               )}

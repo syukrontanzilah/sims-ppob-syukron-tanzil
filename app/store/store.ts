@@ -3,6 +3,7 @@ import servicesReducer from "./slices/servicesSlice";
 import bannerReducer from "./slices/bannerSlice";
 import profileReducer from "./slices/profileSlice";
 import balanceReducer from "./slices/balanceSlice";
+import historyReducer from "./slices/historySlice";
 
 export const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ export const store = configureStore({
     banner: bannerReducer,
     profile: profileReducer,
     balance: balanceReducer,
+    history: historyReducer,
   },
 });
 

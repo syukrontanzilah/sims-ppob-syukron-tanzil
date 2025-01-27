@@ -41,6 +41,7 @@ const ProfilePage = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmittingFoto, setIsSubmittingFoto] = useState(false);
+  const [isLoadingLogout, setIsLoadingLogout] = useState<boolean>(false);
 
   const [formData, setFormData] = useState({
     email: data?.email || "",
@@ -102,6 +103,7 @@ const ProfilePage = () => {
         await getProfileData();
       } else {
         toast.error(`Ops, ${res.message}`);
+        setIsSubmitting(false)
       }
     } catch (error) {
       console.error("Error update:", error);
@@ -153,6 +155,7 @@ const ProfilePage = () => {
         await getProfileData();
       } else {
         toast.error(`Ops, ${result.message}!`);
+        setIsSubmittingFoto(false)
       }
     } catch (error) {
       console.error("Error update:", error);
@@ -168,13 +171,13 @@ const ProfilePage = () => {
   return (
     <div className="m-6 mx-[10%]">
       <form className=" flex flex-col items-center" action="">
-        <div className="flex flex-col justify-center items-center">
+        <div className="flex flex-col justify-center items-center w-28 h-28 bg-gray-50 rounded-full border">
           {formData.profile_image &&
             (typeof formData.profile_image === "object" ? (
               <img
                 src={URL.createObjectURL(formData.profile_image)}
                 alt="Uploaded foto"
-                className="mt-2 w-28 h-28 object-cover border border-gray-300 rounded-full"
+                className="w-28 h-28 object-cover border border-gray-300 rounded-full"
               />
             ) : (
               <img
@@ -188,7 +191,7 @@ const ProfilePage = () => {
                     : "/image/profile.png"
                 }
                 alt="Photo profile"
-                className="mt-2 w-28 h-28 object-cover border border-gray-300 rounded-full"
+                className="w-28 h-28 object-cover border border-gray-300 rounded-full"
               />
             ))}
 
@@ -207,9 +210,9 @@ const ProfilePage = () => {
           </label>
         </div>
 
-        <div className="font-bold text-xl my-4">
+        <div className="font-bold text-xl my-4 h-7">
           {" "}
-          {data?.first_name || "-"} {data?.last_name}
+          {data?.first_name || ""} {data?.last_name}
         </div>
 
         <div className=" w-[40%]">
@@ -246,7 +249,7 @@ const ProfilePage = () => {
             className="bg-white border w-full rounded-md text-sm font-bold text-red-500 border-red-500 p-2 mb-2"
           >
             {isSubmitting ? (
-              <span className="inline-block w-4 h-4 border-2 border-t-transparent border-red-500 rounded-full animate-spin"></span>
+              <span className="inline-block w-[14px] h-[14px] border-2 border-t-transparent border-red-500 rounded-full animate-spin"></span>
             ) : (
               "Update Profile"
             )}
@@ -256,22 +259,22 @@ const ProfilePage = () => {
             onClick={handleImageSubmit}
           >
             {isSubmittingFoto ? (
-              <span className="inline-block w-4 h-4 border-2 border-t-transparent border-red-500 rounded-full animate-spin"></span>
+              <span className="inline-block w-[14px] h-[14px] border-2 border-t-transparent border-red-500 rounded-full animate-spin"></span>
             ) : (
               "Update Foto"
             )}
           </button>
         </div>
 
-        <Button
-          onClick={() => {
-            logout();
-            router.replace("/login");
-          }}
-          type="submit"
-          title={"Logout"}
-          className=" w-[40%]"
-        />
+        <button 
+        onClick={() => {
+          setIsLoadingLogout(true)  
+          logout();
+          router.replace("/login");       
+        }}
+        className=" border rounded-md text-sm font-bold text-white bg-red-500 p-2 mb-2 w-[40%] flex items-center justify-center">
+            {isLoadingLogout? "Loading..." : "Logout"}
+        </button>
       </form>
     </div>
   );

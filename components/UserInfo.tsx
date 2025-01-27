@@ -25,7 +25,7 @@ const UserInfo = () => {
   }, [dispatch]);
 
   const formatBalance = (balance: number | null | undefined) => {
-    if (!balance || isNaN(balance)) return "Rp. -";
+    if (!balance || isNaN(balance)) return "Rp. 0";
     return balance
       .toLocaleString("id-ID", { style: "currency", currency: "IDR" })
       .replace("IDR", "Rp.")

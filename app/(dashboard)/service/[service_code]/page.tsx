@@ -126,11 +126,11 @@ const ServicesTransaction = () => {
             />
           )}
           <div className="font-bold text-slate-700">
-            {serviceData?.service_name}
+            {serviceData?.service_name || "-"}
           </div>
         </div>
         <FormInput
-          placeholder="Masukkan nominal Top Up"
+          placeholder="0"
           type="number"
           name="top_up_amount"
           value={inputValue}
@@ -145,7 +145,7 @@ const ServicesTransaction = () => {
           disabled={isButtonDisabled || loading}
         >
           {loading ? (
-            <span className="inline-block w-4 h-4 border-2 border-t-transparent border-white rounded-full animate-spin"></span>
+            <span className="inline-block w-[14px] h-[14px] border-2 border-t-transparent border-white rounded-full animate-spin"></span>
           ) : (
             "Bayar"
           )}

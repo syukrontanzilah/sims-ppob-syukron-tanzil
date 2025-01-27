@@ -33,8 +33,10 @@ const Transaction = () => {
   const [offset, setOffset] = useState(0);
   const [limit] = useState(5);
   const [hasMore, setHasMore] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const getHistoryData = async (currentOffset: number) => {
+    setLoading(true);
     try {
       const res = await getHistory(currentOffset, limit);
       // console.log("history data-->", res);
@@ -58,6 +60,8 @@ const Transaction = () => {
       }
     } catch (error) {
       console.error("error", error);
+    } finally{
+      setLoading(false);
     }
   };
 
@@ -78,7 +82,18 @@ const Transaction = () => {
       <div className="mt-10">
         <div className="font-semibold text-md mb-6">Semua Transaksi</div>
         <div>
-          {transactions.length > 0 ? (
+          {
+          loading? (
+            <div className="text-center mt-10">
+              {/* Animasi Loading */}
+              <div className="flex justify-center items-center">
+                <div className="animate-spin rounded-full h-8 w-8 border-t-4 border-red-500"></div>
+              </div>
+              <p className="text-slate-400 text-sm mt-4">Memuat data transaksi...</p>
+            </div>
+          )
+          :
+          transactions.length > 0 ? (
             transactions.map((item) => (
               <CardHistory
                 key={item.invoice_number}
