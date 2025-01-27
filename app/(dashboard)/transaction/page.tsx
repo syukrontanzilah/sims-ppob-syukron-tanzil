@@ -33,9 +33,11 @@ const Transaction = () => {
   const [offset, setOffset] = useState(0);
   const [limit] = useState(5);
   const [hasMore, setHasMore] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [initialLoad, setInitialLoad] = useState<boolean>(true);
 
   const getHistoryData = async (currentOffset: number) => {
+    if (currentOffset === 0) setInitialLoad(true);
     setLoading(true);
     try {
       const res = await getHistory(currentOffset, limit);
@@ -62,6 +64,7 @@ const Transaction = () => {
       console.error("error", error);
     } finally{
       setLoading(false);
+      if (currentOffset === 0) setInitialLoad(false);
     }
   };
 
@@ -70,8 +73,10 @@ const Transaction = () => {
   }, []);
 
   const handleShowMore = () => {
+    if(loading) return;
     const newOffset = offset + limit;
     setOffset(newOffset);
+    setLoading(true);
     getHistoryData(newOffset);
   };
 
@@ -83,7 +88,7 @@ const Transaction = () => {
         <div className="font-semibold text-md mb-6">Semua Transaksi</div>
         <div>
           {
-          loading? (
+          initialLoad ? (
             <div className="text-center mt-10">
               {/* Animasi Loading */}
               <div className="flex justify-center items-center">
@@ -109,7 +114,7 @@ const Transaction = () => {
             </div>
           )}
         </div>
-        {hasMore && (
+        {hasMore && !loading && (
           <div className="flex justify-center">
             <button
               className="text-red-500 font-bold bg-slate-100 rounded-md p-2 text-sm"
