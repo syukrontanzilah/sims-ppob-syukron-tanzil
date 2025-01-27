@@ -267,9 +267,9 @@ const ProfilePage = () => {
         </div>
 
         <button 
-        onClick={() => {
+        onClick={async () => {
           setIsLoadingLogout(true)  
-          logout();
+          await logout();
           router.replace("/login");       
         }}
         className=" border rounded-md text-sm font-bold text-white bg-red-500 p-2 mb-2 w-[40%] flex items-center justify-center">
