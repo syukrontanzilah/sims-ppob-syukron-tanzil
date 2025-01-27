@@ -35,7 +35,7 @@ const Header = () => {
           <div>
           <Image width={20} height={20} src={"/icon/Logo.png"} alt="logo" />
           </div>
-            <div className="font-bold text-md text-slate-700 ">SIMS PPOB (TANZIL)</div>
+            <div className="font-bold text-md text-slate-700 hidden md:flex ">SIMS PPOB (TANZIL)</div>
           </Link>
           <div className="flex items-center">
             <Nav
