@@ -12,6 +12,7 @@ const Topup = () => {
   const router = useRouter();
   const [inputValue, setInputValue] = useState<string>("");
   const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(true);
+  const [selectedAmount, setSelectedAmount] = useState<number | null>(null); 
   const [topUpData, setTopUpData] = useState({
     top_up_amount: 0,
   });
@@ -34,6 +35,7 @@ const Topup = () => {
       ...prevState,
       top_up_amount: value,
     }));
+    setSelectedAmount(value);
     setIsButtonDisabled(!validateNominal(valueAsString));
   };
 
@@ -46,6 +48,7 @@ const Topup = () => {
         ...prevState,
         [name]: numericValue,
       }));
+      setSelectedAmount(null);
     }
     setIsButtonDisabled(!validateNominal(value));
   };
@@ -83,6 +86,10 @@ const Topup = () => {
     }
   };
 
+  const formatCurrency = (value: number): string => {
+    return `Rp${value.toLocaleString("id-ID")}`;
+  };
+
   return (
     <div className="m-6 mx-[10%] min-h-screen">
       {/* Top section */}
@@ -108,10 +115,12 @@ const Topup = () => {
             {/* /> */}
             <button
               className={`rounded-md w-full text-white text-sm font-bold py-2 ${
-                isButtonDisabled ? "bg-gray-400" : "bg-red-500"
+                isButtonDisabled ? "bg-gray-400" :
+                loading? "bg-red-300" :
+                "bg-red-500"
               }`}
               onClick={handleTopUp}
-              disabled={isButtonDisabled}
+              disabled={isButtonDisabled || loading}
             >
               {loading ? (
                 <span className="inline-block w-[14px] h-[14px] border-2 border-t-transparent border-white rounded-full animate-spin"></span>
@@ -125,11 +134,11 @@ const Topup = () => {
           <div className="grid grid-cols-3 gap-4">
             {[10000, 20000, 50000, 100000, 250000, 500000].map((amount) => (
               <button
-                className=" border-gray-200 border bg-gray-100 h-10 px-10 rounded-md font-semibold flex justify-center text-sm ring-offset-red-500  ring-red-300 items-center"
+                className={`border-gray-200 border bg-gray-100 h-10 px-12 rounded-md font-semibold flex justify-center text-sm ring-offset-red-500  ring-red-300 items-center text-slate-700 transition-all ${selectedAmount === amount ? "border-red-500" : ""}`}
                 onClick={(e) => handleButtonClick(e, amount)}
                 key={amount}
               >
-                Rp.{amount}
+                {formatCurrency(amount)}
               </button>
             ))}
           </div>

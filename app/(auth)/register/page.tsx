@@ -12,7 +12,7 @@ const Register = () => {
   const router = useRouter();
   const [formData, setFormData] = useState({
     email: "",
-    password: "abcdef1234",
+    password: "",
     // confirmPassword: "",
     first_name: "",
     last_name: "",

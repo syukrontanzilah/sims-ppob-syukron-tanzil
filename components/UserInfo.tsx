@@ -51,7 +51,7 @@ const UserInfo = () => {
               alt="user"
             />
           </div>
-          <h4 className="text-slate-500 mt-2 font-semibold">Selamat datang,</h4>
+          <h4 className="text-slate-500 mt-2 font-semibold">Selamat datang 👋🏻</h4>
           <h3 className="text-slate-700 font-bold text-2xl mb-2">
             {profile?.first_name || "-"} {profile?.last_name}
           </h3>

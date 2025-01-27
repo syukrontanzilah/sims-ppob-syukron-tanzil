@@ -137,10 +137,10 @@ const ServicesTransaction = () => {
           readOnly
           onChange={handleInputChange}
           required
-          className="font-bold text-slate-600 focus:ring-gray-200 focus:border-gray-200"
+          className="font-bold text-slate-600 !border-gray-300 !focus:border-gray-200 !focus:ring-0"
         />
         <button
-          className={`rounded-md w-full text-white text-sm font-bold py-2 bg-red-500`}
+          className={`rounded-md w-full text-white text-sm font-bold py-2 ${loading ? "bg-red-300" : "bg-red-500"}`}
           onClick={handleSubmit}
           disabled={isButtonDisabled || loading}
         >
