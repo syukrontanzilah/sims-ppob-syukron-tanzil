@@ -28,11 +28,33 @@ const Register = () => {
     }));
   };
 
+  const validateEmail = (email: string) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const validatePassword = (password: string) => {
+    return password.length >= 8;
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setErrorMessage("")
     // console.log('data send', formData)
+
+    if (!validateEmail(formData.email)) {
+      setErrorMessage("Format email tidak valid.");
+      setLoading(false);
+      return;
+    }
+
+    if (!validatePassword(formData.password)) {
+      setErrorMessage("Password harus memiliki minimal 8 karakter.");
+      setLoading(false);
+      return;
+    }
+
     try {
       const response = await register(formData);
       // console.log("response register", response);
@@ -49,6 +71,8 @@ const Register = () => {
       }
     } catch (error) {
       console.error("Error", error);
+      setLoading(false);
+      setErrorMessage("Terjadi kesalahan, silakan coba lagi.");
     }
   };
 
@@ -110,9 +134,11 @@ const Register = () => {
               <Button type="submit" title={loading? "Loading...": "Registrasi"} className="mt-4" />
             </form>
           </div>
-          {
-            errorMessage && <div className="text-red-500 text-sm text-center mt-2">Opss Ada yang salah!</div>
-          }
+          {errorMessage && (
+            <div className="text-red-500 text-sm text-center mt-2">
+              {errorMessage}
+            </div>
+          )}
           <div className="text-center text-xs mt-6">
             Sudah punya akun? Login{" "}
             <span className="text-red-600 font-bold">
