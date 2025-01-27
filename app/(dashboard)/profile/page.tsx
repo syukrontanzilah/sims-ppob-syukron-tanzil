@@ -53,7 +53,6 @@ const ProfilePage = () => {
   const getProfileData = async () => {
     try {
       const res = await getProfile();
-      // console.log("profile data", res);
       setData(res);
       if (res) {
         setFormData({
@@ -90,10 +89,8 @@ const ProfilePage = () => {
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // console.log("form data", formData);
     try {
       const res = await updateProfile(formData);
-      // console.log("response update profile", res);
 
       if (res.message === "Sukses") {
         setTimeout(() => {
@@ -146,7 +143,6 @@ const ProfilePage = () => {
       );
 
       const result = await response.json();
-      // console.log("hasil result upload", result);
       if ((result.message = "Update Profile Image berhasil")) {
         setTimeout(() => {
           setIsSubmittingFoto(false);

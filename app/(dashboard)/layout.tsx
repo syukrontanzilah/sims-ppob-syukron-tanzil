@@ -12,12 +12,10 @@ export default function Home({
 }>) {
   useEffect(() => {
     const user = Cookies.get("user");
-    // console.log("data user", user);
     if (!user) {
       redirect("/login");
     }
     const dataToken = JSON.parse(user);
-    // console.log("data token-->", dataToken.data.token);
   }, []);
 
   return (

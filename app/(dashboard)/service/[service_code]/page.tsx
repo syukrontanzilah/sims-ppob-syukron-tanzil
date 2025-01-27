@@ -47,7 +47,6 @@ const ServicesTransaction = () => {
 
     if (numericValue >= 0) {
       setInputValue(value);
-      // setIsButtonDisabled(value.length <= 4);
     }
   };
 
@@ -93,7 +92,6 @@ const ServicesTransaction = () => {
 
       const res = await response.json();
       console.log("res", res);
-      // setResponseMessage("Transaksi berhasil!");
       if ((res.message = "Transaksi berhasil")) {
         setTimeout(() => {
           setLoading(false);

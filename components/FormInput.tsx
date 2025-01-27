@@ -3,10 +3,8 @@ import React, {
   InputHTMLAttributes,
   useState,
 } from "react";
-// import { FaEye, FaEyeSlash } from 'react-icons/fa6';
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { FaUser } from "react-icons/fa6";
-// import { MdAlternateEmail } from "react-icons/md";
 import { LuLockKeyhole } from "react-icons/lu";
 import { MdAlternateEmail } from "react-icons/md";
 import { FaRegUser } from "react-icons/fa";
@@ -16,7 +14,6 @@ import { MdOutlineMoney } from "react-icons/md";
 interface FormInputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   name: string;
-  // type: string;
   type: HTMLInputTypeAttribute;
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;

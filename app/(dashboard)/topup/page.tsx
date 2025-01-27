@@ -55,7 +55,6 @@ const Topup = () => {
 
   const handleTopUp = async (e: React.FormEvent) => {
     e.preventDefault();
-    // console.log("topupdata data", topUpData);
     setLoading(true);
 
     if (topUpData.top_up_amount <= 0 || isNaN(topUpData.top_up_amount)) {
@@ -64,11 +63,8 @@ const Topup = () => {
       return;
     }
 
-    // console.log("form data", topUpData);
-
     try {
       const res = await postTopUp(topUpData);
-      // console.log("response topup", res);
 
       if ((res.message = "Top Up Balance berhasil")) {
         setTimeout(() => {
@@ -112,7 +108,6 @@ const Topup = () => {
               className="font-bold text-lg"
             />
 
-            {/* /> */}
             <button
               className={`rounded-md w-full text-white text-sm font-bold py-2 ${
                 isButtonDisabled ? "bg-gray-400" :
@@ -124,7 +119,6 @@ const Topup = () => {
             >
               {loading ? (
                 <span className="inline-block w-[14px] h-[14px] border-2 border-t-transparent border-white rounded-full animate-spin"></span>
-                // "Processing..."
               ) : (
                 "Top Up"
               )}

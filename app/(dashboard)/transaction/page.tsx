@@ -41,7 +41,6 @@ const Transaction = () => {
     setLoading(true);
     try {
       const res = await getHistory(currentOffset, limit);
-      // console.log("history data-->", res);
 
       if (res.data.records.length > 0) {
 
@@ -90,7 +89,6 @@ const Transaction = () => {
           {
           initialLoad ? (
             <div className="text-center mt-10">
-              {/* Animasi Loading */}
               <div className="flex justify-center items-center">
                 <div className="animate-spin rounded-full h-8 w-8 border-t-4 border-red-500"></div>
               </div>

@@ -13,7 +13,6 @@ const Register = () => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
-    // confirmPassword: "",
     first_name: "",
     last_name: "",
   });
@@ -41,7 +40,6 @@ const Register = () => {
     e.preventDefault();
     setLoading(true);
     setErrorMessage("")
-    // console.log('data send', formData)
 
     if (!validateEmail(formData.email)) {
       setErrorMessage("Format email tidak valid.");
@@ -57,7 +55,6 @@ const Register = () => {
 
     try {
       const response = await register(formData);
-      // console.log("response register", response);
       if (response.message = "Registrasi berhasil silahkan login") {
         setTimeout(() => {
           setLoading(false);
@@ -122,15 +119,7 @@ const Register = () => {
                 isInputPassword
                 required
               />
-              {/* <FormInput
-                placeholder="Konfirmasi password"
-                type="password"
-                name="confirmPassword"
-                value={formData.confirmPassword}
-                onChange={handleInputChange}
-                isInputPassword
-                // required
-              /> */}
+
               <Button type="submit" title={loading? "Loading...": "Registrasi"} className="mt-4" />
             </form>
           </div>

@@ -32,7 +32,6 @@ const Login = () => {
     setErrorMessage("");
     try {
       const response = await login(email, password);
-      // console.log("Response:", response);
       if (response) {
         setTimeout(() => {
           setLoading(false);

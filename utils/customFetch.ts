@@ -47,7 +47,6 @@ interface FetcherParams {
   
       return {
         error: true,
-        // stat_msg: error.stat_msg ?? "Error!",
       };
     }
   };

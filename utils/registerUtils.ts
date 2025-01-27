@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use server";
-// import axios from "axios";
 
 export interface IFormData {
   email: string;

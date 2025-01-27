@@ -40,13 +40,6 @@ export async function login(email: string, password: string) {
 
     const user = result;
     const token = result.data.token;
-    // console.log("token", token);
-
-    // (await cookies()).set("user", JSON.stringify(user));
-    // (await cookies()).set("token-->", token, {
-    //   expires: 30,
-    //   path: "",
-    // });
 
     const cookieInstance = cookies();
     (await cookieInstance).set("user", JSON.stringify(user), {
@@ -67,11 +60,6 @@ export async function login(email: string, password: string) {
 
 
 // LOGOUT
-
-// export async function logout() {
-//   (await cookies()).delete("user");
-// }
-
 
 export async function logout() {
   const cookieInstance = await cookies();
