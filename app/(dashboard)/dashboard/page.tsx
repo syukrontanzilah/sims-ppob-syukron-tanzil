@@ -47,7 +47,6 @@ const Dashboard = () => {
   const getServicesData = async () => {
     try {
       const res = await getService();
-      // setDataServices(res);
       dispatch(setServices(res));
     } catch (error) {
       console.error("error", error);
@@ -57,7 +56,6 @@ const Dashboard = () => {
   const getBannerData = async () => {
     try {
       const res = await getBanner();
-      // setDataBanner(res);
       dispatch(setBanners(res));
     } catch (error) {
       console.error("error", error);

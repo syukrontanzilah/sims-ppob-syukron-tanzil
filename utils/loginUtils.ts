@@ -68,6 +68,21 @@ export async function login(email: string, password: string) {
 
 // LOGOUT
 
+// export async function logout() {
+//   (await cookies()).delete("user");
+// }
+
+
 export async function logout() {
-  (await cookies()).delete("user");
+  const cookieInstance = await cookies();
+
+  cookieInstance.delete("user");
+  cookieInstance.delete("token");
+
+  return new Response(null, {
+    headers: {
+      "Cache-Control": "no-store, no-cache, must-revalidate",
+    },
+  });
 }
+
