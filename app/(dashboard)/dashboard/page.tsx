@@ -74,7 +74,7 @@ const Dashboard = () => {
 
       {/* List menu layanan */}
       <div className="flex justify-between mt-10 flex-wrap gap-2 lg:gap-0">
-        {dataservices.map((item, i) => (
+        {dataservices?.map((item, i) => (
           <CardLayanan
             onClick={()=> router.push(`/service/${item.service_code}`)}
             key={i}
@@ -89,7 +89,7 @@ const Dashboard = () => {
         Temukan Promo menarik
       </div>
       <div className="flex gap-5 flex-wrap lg:flex-nowrap">
-        {dataBanner.map((item, i) => {
+        {dataBanner?.map((item, i) => {
           return (
             <CardBanner
               title={item.banner_name}

@@ -42,7 +42,7 @@ const Transaction = () => {
     try {
       const res = await getHistory(currentOffset, limit);
 
-      if (res.data.records.length > 0) {
+      if (res?.data?.records.length > 0) {
 
         const newRecords = res.data.records.filter(
           (record: any) =>
